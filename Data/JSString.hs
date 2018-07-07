@@ -1831,16 +1831,16 @@ foreign import javascript unsafe
 --  "h$jsstringAppend" js_append :: JSString -> JSString -> JSString -- debug
   "$1+$2" js_append :: JSString -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringCompare" js_compare :: JSString -> JSString -> Int#
+  "h$jsstringCompare($1,$2)" js_compare :: JSString -> JSString -> Int#
 --  "($1<$2)?-1:(($1>$2)?1:0)" js_compare :: JSString -> JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringSingleton" js_singleton :: Char -> JSString
+  "h$jsstringSingleton($1)" js_singleton :: Char -> JSString
 foreign import javascript unsafe
-  "h$jsstringUnpack" js_unpack :: JSString -> Exts.Any -- String
+  "h$jsstringUnpack($1)" js_unpack :: JSString -> Exts.Any -- String
 foreign import javascript unsafe
-  "h$jsstringCons" js_cons :: Char -> JSString -> JSString
+  "h$jsstringCons($1,$2)" js_cons :: Char -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringSnoc" js_snoc :: JSString -> Char -> JSString
+  "h$jsstringSnoc($1,$2)" js_snoc :: JSString -> Char -> JSString
 foreign import javascript unsafe
   "h$jsstringUncons" js_uncons :: JSString -> (# Int#, JSString #)
 foreign import javascript unsafe
@@ -1857,67 +1857,67 @@ foreign import javascript unsafe
   "(($2.charCodeAt($1)|1023)===0xDBFF)?2:1" js_charWidthAt
   :: Int# -> JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringIndex" js_index :: Int# -> JSString -> Int#
+  "h$jsstringIndex($1,$2)" js_index :: Int# -> JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringIndexR" js_indexR :: Int# -> JSString -> Int#
+  "h$jsstringIndexR($1,$2)" js_indexR :: Int# -> JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringUncheckedIndex" js_uncheckedIndex :: Int# -> JSString -> Int#
+  "h$jsstringUncheckedIndex($1,$2)" js_uncheckedIndex :: Int# -> JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringIndexR" js_uncheckedIndexR :: Int# -> JSString -> Int#
+  "h$jsstringIndexR($1,$2)" js_uncheckedIndexR :: Int# -> JSString -> Int#
 
 -- js_head and js_last return -1 for empty string
 foreign import javascript unsafe
-  "h$jsstringHead" js_head :: JSString -> Int#
+  "h$jsstringHead($1)" js_head :: JSString -> Int#
 foreign import javascript unsafe
-  "h$jsstringLast" js_last :: JSString -> Int#
+  "h$jsstringLast($1)" js_last :: JSString -> Int#
 
 foreign import javascript unsafe
-  "h$jsstringInit" js_init :: JSString -> JSVal -- null for empty string
+  "h$jsstringInit($1)" js_init :: JSString -> JSVal -- null for empty string
 foreign import javascript unsafe
-  "h$jsstringTail" js_tail :: JSString -> JSVal -- null for empty string
+  "h$jsstringTail($1)" js_tail :: JSString -> JSVal -- null for empty string
 foreign import javascript unsafe
-  "h$jsstringReverse" js_reverse :: JSString -> JSString
+  "h$jsstringReverse($1)" js_reverse :: JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringGroup"  js_group :: JSString -> Exts.Any {- [JSString] -}
+  "h$jsstringGroup($1)"  js_group :: JSString -> Exts.Any {- [JSString] -}
 --foreign import javascript unsafe
 --  "h$jsstringGroup1" js_group1
 --  :: Int# -> Bool -> JSString -> (# Int#, JSString #)
 foreign import javascript unsafe
-   "h$jsstringConcat" js_concat :: Exts.Any {- [JSString] -} -> JSString
+   "h$jsstringConcat($1)" js_concat :: Exts.Any {- [JSString] -} -> JSString
 -- debug this below!
 foreign import javascript unsafe
-   "h$jsstringReplace" js_replace :: JSString -> JSString -> JSString -> JSString
+   "h$jsstringReplace($1,$2,$3)" js_replace :: JSString -> JSString -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringCount" js_count :: JSString -> JSString -> Int#
+  "h$jsstringCount($1,$2)" js_count :: JSString -> JSString -> Int#
 foreign import javascript unsafe
   "h$jsstringWords1" js_words1 :: Int# -> JSString -> (# Int#, JSString #)
 foreign import javascript unsafe
-  "h$jsstringWords" js_words :: JSString -> Exts.Any -- [JSString]
+  "h$jsstringWords($1)" js_words :: JSString -> Exts.Any -- [JSString]
 foreign import javascript unsafe
   "h$jsstringLines1" js_lines1 :: Int# -> JSString -> (# Int#, JSString #)
 foreign import javascript unsafe
-  "h$jsstringLines" js_lines :: JSString -> Exts.Any -- [JSString]
+  "h$jsstringLines($1)" js_lines :: JSString -> Exts.Any -- [JSString]
 foreign import javascript unsafe
-  "h$jsstringUnlines" js_unlines :: Exts.Any {- [JSString] -} -> JSString
+  "h$jsstringUnlines($1)" js_unlines :: Exts.Any {- [JSString] -} -> JSString
 foreign import javascript unsafe
-  "h$jsstringUnwords" js_unwords :: Exts.Any {- [JSString] -} -> JSString
+  "h$jsstringUnwords($1)" js_unwords :: Exts.Any {- [JSString] -} -> JSString
 foreign import javascript unsafe
-  "h$jsstringIsPrefixOf" js_isPrefixOf :: JSString -> JSString -> Bool
+  "h$jsstringIsPrefixOf($1,$2)" js_isPrefixOf :: JSString -> JSString -> Bool
 foreign import javascript unsafe
-  "h$jsstringIsSuffixOf" js_isSuffixOf :: JSString -> JSString -> Bool
+  "h$jsstringIsSuffixOf($1,$2)" js_isSuffixOf :: JSString -> JSString -> Bool
 foreign import javascript unsafe
-  "h$jsstringIsInfixOf" js_isInfixOf :: JSString -> JSString -> Bool
+  "h$jsstringIsInfixOf($1,$2)" js_isInfixOf :: JSString -> JSString -> Bool
 foreign import javascript unsafe
-  "h$jsstringStripPrefix" js_stripPrefix
+  "h$jsstringStripPrefix($1,$2)" js_stripPrefix
   :: JSString -> JSString -> Exts.Any -- Maybe JSString
 foreign import javascript unsafe
-  "h$jsstringStripSuffix" js_stripSuffix
+  "h$jsstringStripSuffix($1,$2)" js_stripSuffix
   :: JSString -> JSString -> Exts.Any -- Maybe JSString
 foreign import javascript unsafe
-  "h$jsstringCommonPrefixes" js_commonPrefixes
+  "h$jsstringCommonPrefixes($1,$2)" js_commonPrefixes
   :: JSString -> JSString -> Exts.Any -- Maybe (JSString, JSString, JSString)
 foreign import javascript unsafe
-  "h$jsstringChunksOf" js_chunksOf
+  "h$jsstringChunksOf($1,$2)" js_chunksOf
   :: Int# -> JSString -> Exts.Any -- [JSString]
 foreign import javascript unsafe
   "h$jsstringChunksOf1" js_chunksOf1
@@ -1926,7 +1926,7 @@ foreign import javascript unsafe
   "h$jsstringSplitAt" js_splitAt
   :: Int# -> JSString -> (# JSString, JSString #)
 foreign import javascript unsafe
-  "h$jsstringSplitOn" js_splitOn
+  "h$jsstringSplitOn($1,$2)" js_splitOn
   :: JSString -> JSString -> Exts.Any -- [JSString]
 foreign import javascript unsafe
   "h$jsstringSplitOn1" js_splitOn1
@@ -1938,31 +1938,31 @@ foreign import javascript unsafe
   "h$jsstringBreakOnEnd" js_breakOnEnd
   :: JSString -> JSString -> (# JSString, JSString #)
 foreign import javascript unsafe
-  "h$jsstringBreakOnAll" js_breakOnAll
+  "h$jsstringBreakOnAll($1,$2)" js_breakOnAll
   :: JSString -> JSString -> Exts.Any -- [(JSString, JSString)]
 foreign import javascript unsafe
   "h$jsstringBreakOnAll1" js_breakOnAll1
   :: Int# -> JSString -> JSString -> (# Int#, JSString, JSString #)
 foreign import javascript unsafe
-  "h$jsstringDrop" js_drop :: Int# -> JSString -> JSString
+  "h$jsstringDrop($1,$2)" js_drop :: Int# -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringDropEnd" js_dropEnd :: Int -> JSString -> JSString
+  "h$jsstringDropEnd($1,$2)" js_dropEnd :: Int -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringTake" js_take :: Int# -> JSString -> JSString
+  "h$jsstringTake($1,$2)" js_take :: Int# -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringTakeEnd" js_takeEnd :: Int# -> JSString -> JSString
+  "h$jsstringTakeEnd($1,$2)" js_takeEnd :: Int# -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringReplicate" js_replicate :: Int# -> JSString -> JSString
+  "h$jsstringReplicate($1,$2)" js_replicate :: Int# -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringReplicateChar" js_replicateChar :: Int -> Char -> JSString
+  "h$jsstringReplicateChar($1,$2)" js_replicateChar :: Int -> Char -> JSString
 foreign import javascript unsafe
   "var l=$1.length; $r=l==1||(l==2&&($1.charCodeAt(0)|1023)==0xDFFF);"
   js_isSingleton :: JSString -> Bool
 foreign import javascript unsafe
-  "h$jsstringIntersperse"
+  "h$jsstringIntersperse($1,$2)"
   js_intersperse :: Char -> JSString -> JSString
 foreign import javascript unsafe
-  "h$jsstringIntercalate"
+  "h$jsstringIntercalate($1,$2)"
   js_intercalate :: JSString -> Exts.Any {- [JSString] -} -> JSString
 foreign import javascript unsafe
   "$1.toUpperCase()" js_toUpper :: JSString -> JSString

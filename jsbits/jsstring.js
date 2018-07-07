@@ -109,7 +109,7 @@ if(String.prototype.codePointAt) {
         TRACE_JSSTRING("(codePointAt) snoc: '" + str + "' " + ch);
 	return str+String.fromCodePoint(ch);
     }
-    h$jsstringUncons = function(str) {
+    h$jsstringUncons = function(str, str2) {
         TRACE_JSSTRING("(codePointAt) uncons: '" + str + "'");
 	var l = str.length;
 	if(l===0) {
@@ -169,7 +169,7 @@ if(String.prototype.codePointAt) {
 	return str + ((IS_ASTRAL(ch)) ? String.fromCharCode(HI_SURR(ch), LO_SURR(ch))
                                       : String.fromCharCode(ch));
     }
-    h$jsstringUncons = function(str) {
+    h$jsstringUncons = function(str, str2) {
         TRACE_JSSTRING("(no codePointAt) uncons: '" + str + "'");
 	var l = str.length;
 	if(l===0) {
@@ -200,7 +200,7 @@ if(String.prototype.codePointAt) {
     }
 }
 
-function h$jsstringUnsnoc(str) {
+function h$jsstringUnsnoc(str, str2) {
   TRACE_JSSTRING("unsnoc: '" + str + "'");
   var l = str.length;
   if(l===0) {
@@ -331,7 +331,7 @@ function h$jsstringDrop(n, str) {
     return str.substr(i);
 }
 
-function h$jsstringSplitAt(n, str) {
+function h$jsstringSplitAt(n, str, str2) {
   TRACE_JSSTRING("splitAt: " + n + " '" + str + "'");
   if(n <= 0) {
     RETURN_UBX_TUP2("", str);
@@ -519,7 +519,7 @@ function h$jsstringCommonPrefixes(x, y) {
 		        ));
 }
 
-function h$jsstringBreakOn(b, x) {
+function h$jsstringBreakOn(b, b2, x, x2) {
     TRACE_JSSTRING("breakOn: '" + b + "' '" + x + "'");
     var i = x.indexOf(b);
     if(i===-1) {
@@ -531,7 +531,7 @@ function h$jsstringBreakOn(b, x) {
     RETURN_UBX_TUP2(x.substr(0,i), x.substr(i));
 }
 
-function h$jsstringBreakOnEnd(b, x) {
+function h$jsstringBreakOnEnd(b, b2, x, x2) {
     TRACE_JSSTRING("breakOnEnd: '" + b + "' '" + x + "'");
     var i = x.lastIndexOf(b);
   if(i===-1) {
@@ -542,7 +542,7 @@ function h$jsstringBreakOnEnd(b, x) {
     RETURN_UBX_TUP2(x.substr(0,i), x.substr(i));
 }
 
-function h$jsstringBreakOnAll1(n, b, x) {
+function h$jsstringBreakOnAll1(n, b, b2, x, x2) {
     TRACE_JSSTRING("breakOnAll1: " + n + " '" + b + "' '" + x + "'");
     var i = x.indexOf(b, n);
     if(i===0) {
@@ -567,7 +567,7 @@ function h$jsstringBreakOnAll(pat, src) {
     return r;
 }
 
-function h$jsstringSplitOn1(n, p, x) {
+function h$jsstringSplitOn1(n, p, p2, x, x2) {
     TRACE_JSSTRING("splitOn1: " + n + " '" + p + "' '" + x + "'");
     var i = x.indexOf(p, n);
     if(i === -1) {
@@ -588,7 +588,7 @@ function h$jsstringSplitOn(p, x) {
 // returns -1 for end of input, start of next token otherwise
 // word in h$ret1
 // this function assumes that there are no whitespace characters >= 0x10000
-function h$jsstringWords1(n, x) {
+function h$jsstringWords1(n, x, x2) {
     TRACE_JSSTRING("words1: " + n + " '" + x + "'");
     var m = n, s = n, l = x.length;
     if(m >= l) return -1;
@@ -647,7 +647,7 @@ function h$jsstringWords(x) {
 
 // returns -1 for end of input, start of next token otherwise
 // line in h$ret1
-function h$jsstringLines1(n, x) {
+function h$jsstringLines1(n, x, x2) {
     TRACE_JSSTRING("lines1: " + n + " '" + x + "'");
     var m = n, l = x.length;
     if(n >= l) return -1;
@@ -706,7 +706,7 @@ function h$jsstringGroup(x) {
     return MK_CONS(MK_JSVAL(x.substr(0,s+1)), r);
 }
 
-function h$jsstringChunksOf1(n, s, x) {
+function h$jsstringChunksOf1(n, s, x, x2) {
     TRACE_JSSTRING("chunksOf1: " + n + " " + s + " '" + x + "'");
     var m = s, c = 0, l = x.length, ch;
     if(n <= 0 || l === 0 || s >= l) return -1
